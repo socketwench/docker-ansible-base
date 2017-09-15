@@ -3,13 +3,13 @@ MAINTAINER tess@deninet.com
 
 # Install packages.
 RUN apk --update --no-cache add \
+        python \
         py-pip \
+        openssl \
         openssh-client \
         git \
         rsync \
-        mariadb-client \
-        ansible \
-        py-curl
+        libressl2.5-libcrypto
 
 # Install packages only needed for building.
 RUN apk add --no-cache --virtual .build-dependencies \
@@ -20,7 +20,9 @@ RUN apk add --no-cache --virtual .build-dependencies \
         libffi-dev
 
 RUN pip install \
-        linode-api
+         ansible \
+         pycurl \
+         linode-python
 
 # Remove unneed packages
 RUN apk del .build-dependencies
