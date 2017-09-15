@@ -7,7 +7,9 @@ RUN apk --update --no-cache add \
         openssh-client \
         git \
         rsync \
-        mariadb-client
+        mariadb-client \
+        ansible \
+        py-curl
 
 # Install packages only needed for building.
 RUN apk add --no-cache --virtual .build-dependencies \
@@ -18,8 +20,6 @@ RUN apk add --no-cache --virtual .build-dependencies \
         libffi-dev
 
 RUN pip install \
-        ansible \
-        pycurl \
         linode-api
 
 # Remove unneed packages
